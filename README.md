@@ -1,21 +1,23 @@
-# Search Card
+# Searchable List Card
 
-Quickly search for entities from a Lovelace card.
+Forked from [postlund](https://github.com/postlund)'s [search-card](https://github.com/postlund/search-card)
+A Todo List card with search capabilities.
+This is a very early version, done very quick and dirty.
+Please add your improvement suggestions, and feel free to contribute.
 
-![Demo of card](images/demo.gif)
+<!-- ![Demo of card](images/demo.gif) -->
 
 ## Features
 
-* Search for entities and display results in frontend
-* Define custom actions that can be called for search input
-* More to come...
+* The Add item textfield is now also a search bar
+* Helps find existing items and avoid creating duplicates
 
 ## Roadmap
 
 Some things I want to add in upcoming releases:
 
-* Exclude domains and/or entities from results
-* Button to show all results (to override "max results")
+* Add ability to edit / delete items
+* Improve performance
 
 ## Install
   
