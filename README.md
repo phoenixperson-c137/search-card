@@ -1,9 +1,12 @@
 # Searchable List Card
 
 Forked from [postlund](https://github.com/postlund)'s [search-card](https://github.com/postlund/search-card)
-  A Todo List card with search capabilities.
-  This is a very early version, done very quick and dirty.
-  Please add your improvement suggestions, and feel free to contribute.
+
+A Todo List card with search capabilities.
+
+This is a very early version, done very quick and dirty.
+
+Please add your improvement suggestions, and feel free to contribute.
 
 <!-- ![Demo of card](images/demo.gif) -->
 
