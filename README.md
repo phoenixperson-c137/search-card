@@ -28,42 +28,42 @@ Make sure [card-tools](https://github.com/thomasloven/lovelace-card-tools) is in
   
 ### Simple Install
 
-1. Download `search-card.js` and copy it into `config/www/search-card` (create the `search-card` directory)
+1. Download `searchable-list-card.js` and copy it into `config/www/searchable-list-card` (create the `searchable-list-card` directory)
 
-2. Add a reference to `search-card/search-card.js` inside your `ui-lovelace.yaml`
+2. Add a reference to `searchable-list-card/searchable-list-card.js` inside your `ui-lovelace.yaml`
 
   ```yaml
   resources:
-    - url: /local/search-card/search-card.js?v=0
+    - url: /local/searchable-list-card/searchable-list-card.js?v=0
       type: module
   ```
 
 ### Git Install
 
-1. Clone this repository into your `www`-directory: `git clone https://github.com/postlund/search-card.git`
+1. Clone this repository into your `www`-directory: `git clone https://github.com/phoenixperson-c137/searchable-list-card`
 
-2. Add a reference to `search-card/search-card.js` inside your `ui-lovelace.yaml`
+2. Add a reference to `searchable-list-card/searchable-list-card.js` inside your `ui-lovelace.yaml`
 
   ```yaml
   resources:
-    - url: /local/search-card/search-card.js?v=0
+    - url: /local/searchable-list-card/searchable-list-card.js?v=0
       type: module
   ```
 
-## HACS
+<!-- ## HACS
 
-Look for `Search Card` in the store.
+Look for `Searchable List Card` in the store. -->
 
-## Updating
+<!-- ## Updating
 
 If you...
 
 * manually copied the files, just download the latest files and overwrite what you already have
 * cloned the repository from Github, just do `git pull` to update
 
-... and increase `?v=X` to `?vX+1`.
+... and increase `?v=X` to `?vX+1`. -->
 
-## Using the card
+<!-- ## Using the card
 
 ### Options
 
@@ -92,7 +92,7 @@ You can define custom actions that will call a service (if it exists) with the i
         entity_id: {1}
     excluded_domains:
       - automation
-  ```
+  ``` -->
 
 ## Issues and imitations
 
