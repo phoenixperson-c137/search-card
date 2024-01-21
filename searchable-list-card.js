@@ -1,7 +1,6 @@
 /*
 TODO:
 1. Add ability to delete items
-2. Remove WS call when clearing search
 */
 customElements.whenDefined('card-tools').then(() => {
     var ct = customElements.get('card-tools')
@@ -86,16 +85,16 @@ customElements.whenDefined('card-tools').then(() => {
         _createResultRow(item) {
             if (item == 'Active') return ct.LitHtml `<div class="header"><span>Active</span></div>`
             if (item == 'Completed') return ct.LitHtml `<div class="divider"></div><div class="header"><span>Completed</span></div>`
-            if (item.status == 'completed') return ct.LitHtml `<div id="results"><ha-checkbox @change=${this._changeItemStatus} id=${item.summary} checked></ha-checkbox><label for=${item.summary}>${item.summary}</label></div>`
+            if (item.status == 'completed') return ct.LitHtml `<div id="results"><ha-checkbox @change=${this._changeItemStatus} id=${item.summary} checked></ha-checkbox><label for=${item.summary}><s>${item.summary}</s></label></div>`
             return ct.LitHtml `<div id="results"><ha-checkbox @change=${this._changeItemStatus} id=${item.summary}></ha-checkbox><label for=${item.summary}>${item.summary}</label></div>`
         }
 
-        async _getListItems() {
+        _getListItems() {
             return this.hass.callWS({
                 type: 'todo/item/list',
                 entity_id: this.config.entity
-            }).then(userResponse =>
-                userResponse.items).then((list_items) => {
+            }).then(listResponse =>
+                listResponse.items).then((list_items) => {
                     this.items = list_items
                     var items = this.searchText?.length == 0 ? this.items : this.results
                     var items_done = items.filter((item) => item.status == 'completed')
@@ -109,9 +108,9 @@ customElements.whenDefined('card-tools').then(() => {
         }
 
         _changeItemStatus(ev) {
-            this.items = []
             this.results = []
             this.results_rows = []
+            this.update()
             this.hass.callService("todo", "update_item", {
                 entity_id: this.config.entity,
                 item: ev.target.id,
@@ -137,6 +136,7 @@ customElements.whenDefined('card-tools').then(() => {
         
             if (!this.config || !this.hass || searchText === "") {
                 this.results = this.items
+                this._sortItems()
                 this.update()
                 return
             }
@@ -152,13 +152,17 @@ customElements.whenDefined('card-tools').then(() => {
                 console.warn(err)
             }
 
+            this._sortItems()
+            this.update()
+        }
+
+        _sortItems() {
             var items_done = this.results.filter((item) => item.status == 'completed')
             var items_todo = this.results.filter((item) => item.status == 'needs_action')
 
             this.results = ['Active'].concat(items_todo.concat(['Completed'].concat(items_done)))
 
             this.results_rows = this.results.map((item) => this._createResultRow(item))
-            this.update()
         }
 
         static get styles() {
